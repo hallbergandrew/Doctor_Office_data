@@ -1,13 +1,13 @@
 require 'rspec'
 require 'pg'
-require './lib/doctor_list.rb'
-require './lib/patient_list.rb'
+require 'doctor_list'
+require 'patient_list'
 
-DB = PG.connect({:dbname => 'to_do_test'})
+DB = PG.connect({:dbname => 'office'})
 
-RSpec.configure do |config|
-  config.after(:each) do
-    DB.exec("DELETE FROM lists *;")
-    DB.exec("DELETE FROM tasks *;")
-  end
-end
+# RSpec.configure do |config|
+#   config.after(:each) do
+#     DB.exec("DELETE FROM doctors *;")
+#     DB.exec("DELETE FROM patients *;")
+#   end
+# end
