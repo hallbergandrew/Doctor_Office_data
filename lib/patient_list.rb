@@ -23,7 +23,7 @@ class Patient
   end
 
   def save
-    DB.exec("INSERT INTO patients (name, birthday) VALUES ('#{@name}', '#{@birthday}');")
+    DB.exec("INSERT INTO patients (name, birthday, doctor) VALUES ('#{@name}', '#{@birthday}', '#{@doctor}');")
   end
 
   def ==(another_patient)

@@ -29,5 +29,24 @@ class Doctor
     self.name == another_doctor.name
   end
 
+  def self.list_specialty(specialty)
+    @specialty = specialty
+    specialties = DB.exec ("SELECT name FROM doctors WHERE specialty = '#{@specialty}';")
+    special =[]
+    # specialties = specialties.first
+    # binding.pry
+    specialties.each do |specialty|
+        special << specialty['name']
+    end
+    puts "The special doctors for #{@specialty} are: "
+    puts special
+  end
+  def self.specialty
+    results = DB.exec("SELECT specialty FROM doctors;")
+    results.each do |result|
+      puts "Specialty: " + result['specialty']
+    end
+  end
+
 end
 

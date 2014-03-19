@@ -12,6 +12,7 @@ def main_menu
   puts 'Press 3 to add a doctor.'
   puts 'Press 4 to see the doctor list.'
   puts 'Press 5 to assign a doctor to a patient.'
+  puts 'Press 6 to look up a doctor based on specialty'
   puts 'Press 9 to exit.'
 
   user_input = gets.chomp.to_i
@@ -25,6 +26,8 @@ def main_menu
     list_doctor
   elsif user_input == 5
     assign_doctor
+  elsif user_input == 6
+    specialty_lookup
   elsif user_input == 9
     exit
   else
@@ -41,7 +44,11 @@ def add_patient
   @pat_birth = gets.chomp
   "\n\n"
 
-  current_patient = Patient.new({'name' => @pat_name, 'birthday' => @pat_birth})
+  puts "Please enter the id of the doctor you would like"
+  Doctor.all
+  @pat_doctor = gets.chomp.to_i
+
+  current_patient = Patient.new({'name' => @pat_name, 'birthday' => @pat_birth, 'doctor' => @pat_doctor})
 
   current_patient.save
 
@@ -92,6 +99,18 @@ def list_doctor
   Doctor.all
     "\n\n"
   main_menu
+end
+
+def specialty_lookup
+  puts "here is a list of specialties to choose from: "
+  Doctor.specialty
+  puts "Please enter a specialty to see doctors available:"
+  spec_choice = gets.chomp
+  puts Doctor.list_specialty(spec_choice)
+
+  main_menu
+
+
 end
 
 
